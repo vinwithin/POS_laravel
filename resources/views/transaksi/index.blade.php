@@ -16,9 +16,9 @@
                     <div class="col-sm-8">
                         <select class="form-control  " name="barangs" id="barangs"
                             required>
-                            <option>-- Pilih Product --</option>
+                            <option >-- Pilih Product --</option>
                             @foreach ($barangs as $brg)
-                                 <option  value="{{ $brg->id }}">  {{ $brg->nama_barang  }}</option>
+                                 <option value="{{ $brg->id }}">  {{ $brg->nama_barang  }}</option>
                                 @endforeach
                         </select>
                     </div>
@@ -71,10 +71,11 @@
                                     Rp. {{ number_format($trans->barang->harga * $trans->qty) }} 
                                 </td>
                                 <td>
-                                    <button type="button" wire:click="deleteTransaction
+                                   
                                     {{-- ({{ $transaction->id }}) --}}
-                                    "
-                                        class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                    
+                                         <a href="transaksi/delete/{{ $trans->id }}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
+                                   
                                 </td>
                             </tr>
                         @endforeach
@@ -84,8 +85,10 @@
                         <td></td>
                         <td></td>
                         <td style="text-align:right;">Total Pembelian</td>
-                        <td>
-                           Rp. {{ $transaksis->sum('total') }}
+                        <td >
+                            <span>Rp. <a id="totals"> {{ $transaksis->sum('total') }} </a></span>
+                            
+                          
                         </td>
                         <tr>
                             <td style="border:none;"></td>
@@ -93,7 +96,7 @@
                             <td style="border:none;"></td>
                             <td style="text-align:right;">Pembayaran</td>
                             <td style="text-align:right;">
-                                <input type="number" wire:model="pembayaran" class="form-control">
+                                <input oninput="myInput()" autocomplete="off" id="pembayaran" type="number" class="form-control">
                             </td>
                         </tr>
                         <tr>
@@ -102,16 +105,27 @@
                             <td style="border:none;"></td>
                             <td style="text-align:right;">Kembalian</td>
                             <td style="text-align:left;">
-                                Rp. -{{ $transaksis->sum('total') }}
+                                <a  id="kembalian">Rp. </a>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
                 <div class="">
-                    <button type="button" wire:click="save" class="btn btn-success btn-sm float-right">Submit</button>
+                    <button type="button"  class="btn btn-success btn-sm float-right">Submit</button>
+                   
                 </div>
             </div>
         </div>
     </div>
     </div>
+    <script>
+       //let pembayaran = document.getElementById('pembayaran').value;
+       //let kembalian = document.getElementById('kembalian');
+       let total = document.getElementById('totals').innerHTML;
+       //kembalian.innerHTML = pembayaran - total;
+       function myInput() {
+            let text = document.getElementById('pembayaran').value;
+            document.getElementById('kembalian').innerHTML = "Rp. " + (text - total);
+        }
+    </script>
 @endsection

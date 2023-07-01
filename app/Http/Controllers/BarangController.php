@@ -37,7 +37,7 @@ class BarangController extends Controller
         ];
          barang::create($barang);
         
-          return redirect('manage')->with('sukses');
+          return redirect('manage')->withSuccess('Berhasil Ditambah!');
            
     }
 
@@ -84,7 +84,7 @@ class BarangController extends Controller
         ]);
         //$produk->save();
        if($barang == true){
-            return redirect('manage');
+            return redirect('manage')->withSuccess('Berhasil DiEdit!');
        }else{
         return  redirect('manage')->withErrors("Mohon isi Semua Field");
        }
@@ -96,6 +96,6 @@ class BarangController extends Controller
     public function destroy($id)
     {
         barang::where('id', $id)->delete(); 
-        return redirect('manage');
+        return redirect('manage')->withSuccess('Berhasil Dihapus!');
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\barang;
-
+use App\Models\riwayat;
 use App\Models\transaksi;
+
 use Exception;
 use Illuminate\Http\Request;
 
@@ -31,14 +32,28 @@ class trasactionController extends Controller
     }catch(Exception $e){
         return redirect("transaksi")->witherrors("Tidak bisa menginputkan barang yang sama");
     }
+    // $histori = riwayat::create([
+    //     'barang_id' => $request->barangs,
+    //     'qty' => 1,
+    //    'total' => "",
+    // ]);
+    // $transaction->total = $transaction->barang->harga;
+    // $transaction->save();
+    // return redirect('transaksi');
         
     
     }
+    
     public function destroy(string $id)
     {
         transaksi::where('id', $id)->delete(); 
         return redirect('transaksi');
 
+    }
+    public function cetak(){
+        transaksi::query()->delete();
+       
+        return redirect('transaksi')->withSuccess('Berhasil Dipesan!');
     }
     
 }

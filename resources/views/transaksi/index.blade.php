@@ -9,7 +9,7 @@
         </style>
         <div class="card border-primary mb-3">
         <div class="card-body">
-            <div class="form-group row pb-6">
+            <div class="form-group row pb-4">
                 <form class="row g-3 mt-3" action="/transaksi/submit" method="POST">
                     @csrf
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Product</label>
@@ -22,8 +22,8 @@
                                 @endforeach
                         </select>
                     </div>
-                    <div class="col-sm-4 ">
-                        <button type="submit" class="btn btn-success w-100 text-center ">Submit</button>
+                    <div  style="text-align: center">
+                        <button type="submit" class="btn btn-success w-100 float-right ">Submit</button>
                     </div>
                 </form>
             </div>
@@ -34,7 +34,7 @@
                 </div>
             @endif --}}
 
-            <div class="card-body border-top pb-5 p-0 mt-3">
+            <div class="card-body border-top pb-5 p-0 mt-1">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -110,10 +110,12 @@
                         </tr>
                     </tfoot>
                 </table>
-                <div class="">
-                    <button type="button"  class="btn btn-success btn-sm float-right">Submit</button>
+                <form action="transaksi/delete" method="get">
+                <div style="text-align: right">
+                    <button class="btn btn-success btn-sm float-right">Submit</button>
                    
                 </div>
+            </form>
             </div>
         </div>
     </div>

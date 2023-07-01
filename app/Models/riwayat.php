@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class riwayat extends Model
 {
     protected $table = 'transaksi';
-    protected $guarded = ['nama_barang','qty','id','created_at','upadated_at'];
+    protected $filiable = ['id'];
+    public function transaksi(){
+        return $this->belongsTo('App\Models\transaksi', 'transaksi_id');
+    }
 }

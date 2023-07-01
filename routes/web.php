@@ -5,6 +5,7 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\profilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\trasactionController;
@@ -36,5 +37,7 @@ Route::get('about', function(){
     return view('about/index');
 })->middleware('isLogin');
 Route::get('transaksi', [trasactionController::class, 'index']);
+Route::get('profil', [profilController::class, 'index']);
 Route::post('/transaksi/submit', [trasactionController::class, 'submit']);
 Route::get('/transaksi/delete/{id}', [trasactionController::class, 'destroy']);
+Route::get('/transaksi/delete', [trasactionController::class, 'cetak']);

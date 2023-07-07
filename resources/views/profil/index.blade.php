@@ -1,16 +1,23 @@
 @extends('dashboard/apk')
 @section('konten6')
 <div class="container-fluid">
-    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('../assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
+    <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('img/curved0.jpg'); background-position-y: 50%;">
       <span class="mask bg-gradient-primary opacity-6"></span>
     </div>
     <div class="card card-body blur shadow-blur mx-4 mt-n6 overflow-hidden">
       <div class="row gx-4">
+       
         <div class="col-auto">
-          <div class="avatar avatar-xl position-relative">
-            <img src="../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+          <div class="avatar width-100  avatar-xxl position-relative mt-3 ml-2">
+            
+              
+            @if (auth()->user()->image)
+
+            <img   src="{{ asset('storage/'.auth()->user()->image) }}" alt="profile_image" class="w-100 h-100 border-radius-lg shadow-sm" onclick="preview()">
+            @endif
           </div>
         </div>
+       
         <div class="col-auto my-auto">
           <div class="h-100">
             <h5 class="mb-1">
@@ -19,9 +26,21 @@
             <p class="mb-0 font-weight-bold text-sm">
               {{ auth()->user()->email }}
             </p>
+            
           </div>
         </div>
-        
+        <div class="col-auto my-auto">
+          <form action="profil/upload" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="oldImage" value="{{ auth()->user()->image }}">
+            <label class="form-label" for="inputImage">Pilih Foto:</label>
+            <input type="file" name="image" id="inputImage" class="form-control @error('image') is-invalid @enderror ">
+            @error('image')
+             <span class="text-danger">{{ $message }}</span>
+              @enderror
+              <button type="submit" class="btn btn-success mt-2">Upload</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -33,7 +52,7 @@
             <h6 class="mb-0">Profile Information</h6>
           </div>
           <div class="col-md-4 text-end">
-            <a href="javascript:;">
+            <a href="transaksi">
               <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
             </a>
           </div>
@@ -65,4 +84,7 @@
       </div>
     </div>
   </div>
+  <script>
+    
+  </script>
 @endsection

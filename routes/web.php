@@ -38,6 +38,7 @@ Route::get('about', function(){
 })->middleware('isLogin');
 Route::get('transaksi', [trasactionController::class, 'index']);
 Route::get('profil', [profilController::class, 'index']);
+Route::post('/profil/upload', [profilController::class, 'store']);
 Route::post('/transaksi/submit', [trasactionController::class, 'submit']);
 Route::get('/transaksi/delete/{id}', [trasactionController::class, 'destroy']);
 Route::get('/transaksi/delete', [trasactionController::class, 'cetak']);

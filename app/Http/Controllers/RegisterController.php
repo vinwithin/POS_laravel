@@ -14,13 +14,20 @@ class RegisterController extends Controller
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required'
-        ]);
+            'password' => 'required',
+            
+            ]);
         
-        $user = User::create(request(['name', 'email', 'password']));
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'image' => "profil.png"
+        ]);
+        $user->save();
         
         $user->assignRole('user');
         
-        return redirect()->to('/login');
+        return redirect()->to('/login')->withSuccess("Berhasil Daftar Akun, Silahkan Login");
     }
 }

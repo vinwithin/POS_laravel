@@ -13,10 +13,9 @@
                 <thead>
                   <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Barang</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jumlah Barang Yang dibeli</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga Barang</th>
-                    <th class="text-secondary opacity-7">Total Pembayaran</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Kasir</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-6 ps-3">Jumlah Barang Yang dibeli</th>        
+                    <th class="text-secondary opacity-7">Total Penjualan</th>
                     <th class="text-secondary opacity-7">Tanggal Penjualan</th>
                   </tr>
                 </thead>
@@ -24,10 +23,9 @@
                   @foreach ($riwayats as $riwayat)
                   <tr>
                     <td class="ps-4">{{ $loop->iteration }}</td>
-                    <td class="ps-2">{{ $riwayat->nama_barang }}</td>
+                    <td class="ps-2">{{ $riwayat->nama_kasir }}</td>
                     <td class="ps-6">{{ $riwayat->qty }}</td>
-                    <td class="ps-8">Rp. {{  $riwayat->harga }}</td>
-                    <td class="ps-4">{{  $riwayat->total_pembayaran }}</td>
+                    <td class="ps-4">{{  $riwayat->total }}</td>
                     <td class="ps-4">{{  $riwayat->created_at }}</td>
                   </tr>
                   @endforeach

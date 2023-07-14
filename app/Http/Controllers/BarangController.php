@@ -27,12 +27,14 @@ class BarangController extends Controller
             'barang' => 'required',
             'kode' => 'required',
             'harga' => 'required',
+           
         ]);
 
         $barang = [
             'nama_barang' => $request->input('barang'),
             'kode_barang' => $request->input("kode"),
             'harga' => $request->input("harga"),
+            'jumlahBarang' => $request->input("jumlah"),
             'user_id' => auth()->user()->id,
         ];
          barang::create($barang);
@@ -80,6 +82,7 @@ class BarangController extends Controller
             'nama_barang' => $request->barang,
             'kode_barang' => $request->kode,
             'harga' => $request->harga,
+            'jumlahBarang' => $request->jumlah,
             
         ]);
         //$produk->save();

@@ -11,7 +11,7 @@ class transaksi extends Model
     protected $fillable = [
         'barang_id',
         'qty',
-        'total',
+        'harga',
     ];
     public function barang(){
         return $this->belongsTo('App\Models\barang', 'barang_id');

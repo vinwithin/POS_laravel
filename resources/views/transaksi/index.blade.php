@@ -47,21 +47,29 @@
                         </thead>
                         <tbody>
                             @foreach ($transaksis as $trans)
+                            <form action="/transaksi/update" method="post">
+                                @csrf
                                 <tr>
                                     <td>
                                         {{ $loop->iteration }}
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" value="{{  $trans->barang->nama_barang  }}" name="nama_barang" readonly>
+                                        <input type="text" class="form-control" value="{{ $trans->barang->nama_barang }}"
+                                            name="nama_barang" readonly>
                                     </td>
                                     <td>
                                         {{-- <form action="/transaksi/update"> --}}
                                         <div>
                                             {{-- @if ($trans->qty > 1) --}}
                                             <span class="qty1 btn btn-danger btn-sm" id="qty-">-</span>
-
+                                           
+                                                
                                             <input type="text" name="qty" id="qty+"
                                                 class="qty+ form-control qty">
+                                            <input type="hidden"  name="qtyhide" id="qty+"
+                                                class="qtyhide form-control qty" value="{{ $trans->barang->jumlahBarang }}">
+                                           
+                                            
                                             <span class="qty2 btn btn-success btn-sm" id="qtyplus">+</span>
                                         </div>
                                         {{-- </form> --}}
@@ -87,8 +95,9 @@
                             <td></td>
                             <td style="text-align:right;">Total Pembelian</td>
                             <td>
-                                <span>Rp. <a id="totals"> </a></span>
-
+                                <span style=""> <input type="text" class="form-control " name="totals" id="totals"> </span>
+                                <input type="hidden"  name="qtyjumlah" id="qtyjumlah"
+                                class="qtyjumlah form-control" value="">
 
                             </td>
                             <tr>
@@ -109,16 +118,23 @@
                                 <td style="text-align:left;">
                                     <a id="kembalian">Rp. </a>
                                 </td>
+                                
                             </tr>
                         </tfoot>
                     </table>
+                    <div style="text-align: right">
+                    <button class="btn btn-success btn-sm float-right">Submit</button>
+                    </div>
+                </form>
                     <form action="transaksi/delete" method="get">
+                        @csrf
                         <div style="text-align: right">
                             <p id="demo"></p>
-                            <button class="btn btn-success btn-sm float-right">Submit</button>
+                            <button class="btn btn-danger btn-sm float-right">Hapus Transaksi</button>
 
                         </div>
                     </form>
+                </form>
                 </div>
             </div>
         </div>
@@ -135,6 +151,8 @@
         const totalHarga1 = document.getElementsByClassName('totalHarga');
         const Harga = document.getElementsByClassName('harga1');
         const totalCount = document.getElementsByClassName('qty+');
+        const hide = document.getElementsByClassName('qtyhide');
+        const jumlah = document.getElementById('qtyjumlah');
         const kurang = document.getElementsByClassName('qty1');
         const tambah = document.getElementsByClassName('qty2');
         const totals = document.getElementById('totals');
@@ -166,19 +184,29 @@
 
             // Increment the value
             var result = parseInt(Harga[index].innerHTML) * (parseInt(totalCount[index].value) + 1);
+            if(totalCount[index].value != hide[index].value){
             var incrementedValue = buttonValue + 1;
 
             // Update the button value
             totalCount[index].value = incrementedValue;
-
+            }else{
+                tambah[i].disabled = true;
+            }
+            
             totalHarga1[index].innerHTML = result;
 
             total = 0;
-            totals.innerHTML = total;
+            var sum = 0;
+            totals.value = total;
+            jumlah.value = sum;
             for (i = 0; i < totalHarga1.length; i++) {
                 total += parseInt(totalHarga1[i].innerHTML);
-                totals.innerHTML = total;
+                totals.value= total;
             }
+            for (j = 0; j < totalCount.length; j++) {
+                    sum += parseInt(totalCount[j].value);
+                    jumlah.value = sum;
+                }
         }
         // decrement algorithms
         for (var j = 0; j < kurang.length; j++) {
@@ -205,19 +233,30 @@
                 var result = parseInt(Harga[index1].innerHTML) * parseInt(totalCount[index1].value);
                 totalHarga1[index1].innerHTML = result
                 total = 0;
-            totals.innerHTML = total;
-            for (i = 0; i < totalHarga1.length; i++) {
-                total += parseInt(totalHarga1[i].innerHTML);
-                totals.innerHTML = total;
-            }
+                var sum = 0;
+                totals.value = total;
+                jumlah.value = sum;
+                for (i = 0; i < totalHarga1.length; i++) {
+                    total += parseInt(totalHarga1[i].innerHTML);
+                    totals.value = total;
+                }
+                for (j = 0; j < totalCount.length; j++) {
+                    sum += parseInt(totalCount[j].value);
+                    jumlah.value = sum;
+                }
             }
         }
         var total = 0;
+        var sum = 0;
         for (i = 0; i < totalHarga1.length; i++) {
-            total += parseInt(totalHarga1[i].innerHTML);
-            totals.innerHTML = total;
+            total += parseInt(totalHarga1[i].innerHTML);          
+            totals.value = total;        
         }
-
+        
+        for (j = 0; j < totalCount.length; j++) {
+            sum += parseInt(totalCount[j].value);
+            jumlah.value = sum;
+        }
 
 
         // for (var j = 0; j < tambah.length; j++) {

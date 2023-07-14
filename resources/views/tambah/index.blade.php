@@ -21,6 +21,10 @@
                       <label for="harga_produk" class="form-label">Harga</label>
                       <input type="text" name="harga" class="form-control" id="harga">
                   </div>
+                  <div class="mb-3">
+                      <label for="jumlah_produk" class="form-label">Jumlah Produk</label>
+                      <input type="text" name="jumlah" class="form-control" id="jumlah">
+                  </div>
                   <div class="d-grid gap-2">
                   <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
@@ -44,7 +48,7 @@
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Barang</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode Barang</th>
                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga Barang</th>
-                    <th class="text-secondary opacity-7">Tanggal Diinput</th>
+                    <th class="text-secondary opacity-7">Jumlah Produk</th>
                     <th class="text-secondary opacity-7">Aksi</th>
                   </tr>
                 </thead>
@@ -55,7 +59,7 @@
                     <td class="ps-2">{{ $brg->nama_barang }}</td>
                     <td class="ps-6">{{ $brg->kode_barang }}</td>
                     <td class="ps-8">Rp. {{  $brg->harga }}</td>
-                    <td class="ps-4">{{  $brg->created_at }}</td>
+                    <td class="ps-4">{{  $brg->jumlahBarang }}</td>
                     @if (auth()->user()->can('delete produk'))
                     <td><a href="manage/{{ $brg->id }}/edit" class="btn btn-warning">Edit</a>
                       <form class="d-inline" action="manage/{{ $brg->id }}" method="post">

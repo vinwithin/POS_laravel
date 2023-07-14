@@ -24,17 +24,28 @@ class trasactionController extends Controller
         $transaction = transaksi::create([
             'barang_id' => $request->barangs,
             'qty' => 1,
-           'total' => "",
+           'harga' => "",
         ]);
-        $transaction->total = $transaction->barang->harga;
+        $transaction->harga = $transaction->barang->harga;
         $transaction->save();
         return redirect('transaksi');
     }catch(Exception $e){
         return redirect("transaksi")->witherrors("Tidak bisa menginputkan barang yang sama");
     }
+    
+        
         
     
     }
+    public function update(Request $request){
+        riwayat::create([
+            "nama_kasir" => auth()->user()->name,
+            "qty" => $request->qtyjumlah,
+            "total" => $request->totals,
+        ]);
+        return redirect('transaksi')->withSuccess('Berhasil Dipesan!');
+    }
+    
     
     public function destroy(string $id)
     {
@@ -48,14 +59,8 @@ class trasactionController extends Controller
     }
     public function cetak(Request $request){
         transaksi::query()->delete();
-        $transaction = riwayat::create([
-            'barang_id' => $request->barangs,
-            'qty' => 1,
-           'total' => "",
-        ]);
-        $transaction->total = $transaction->barang->harga;
-        $transaction->save();
-        return redirect('transaksi')->withSuccess('Berhasil Dipesan!');
+      
+        return redirect('transaksi')->withSuccess('Berhasil Dihapus!');
     }
     
 }

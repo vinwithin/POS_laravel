@@ -22,6 +22,10 @@
                         <label for="harga_produk" class="form-label">Harga</label>
                         <input type="text" name="harga" class="form-control" id="harga" value={{ $brg->harga }}>
                     </div>
+                    <div class="mb-3">
+                        <label for="jumlah_produk" class="form-label">Jumlah Produk</label>
+                        <input type="text" name="jumlah" class="form-control" id="jumlah">
+                    </div>
                     <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary">Update</button>
                     </div>

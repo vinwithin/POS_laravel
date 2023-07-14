@@ -42,3 +42,4 @@ Route::post('/profil/upload', [profilController::class, 'store']);
 Route::post('/transaksi/submit', [trasactionController::class, 'submit']);
 Route::get('/transaksi/delete/{id}', [trasactionController::class, 'destroy']);
 Route::get('/transaksi/delete', [trasactionController::class, 'cetak']);
+Route::post('/transaksi/update', [trasactionController::class, 'update']);

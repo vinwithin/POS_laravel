@@ -20,18 +20,16 @@ class trasactionController extends Controller
         $request->validate([
             'barang_id' => 'unique:transaksi',
         ]);
-      try{
+      
         $transaction = transaksi::create([
             'barang_id' => $request->barangs,
             'qty' => 1,
-           'harga' => "",
+            'total' => ' '
         ]);
-        $transaction->harga = $transaction->barang->harga;
+        $transaction->total = $transaction->barang->harga;
         $transaction->save();
         return redirect('transaksi');
-    }catch(Exception $e){
-        return redirect("transaksi")->witherrors("Tidak bisa menginputkan barang yang sama");
-    }
+    
     
         
         

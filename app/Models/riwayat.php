@@ -9,9 +9,7 @@ class riwayat extends Model
 {
     protected $table = 'riwayat';
     protected $filiable =[
-     'nama_barang',
-     'qty', 
-     'total'
+     "total_pembayaran"
     ];
     protected $guarded = ['id','created_at','upadated_at'];
     public function transaksi(){

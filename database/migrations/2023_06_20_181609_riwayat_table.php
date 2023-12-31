@@ -13,11 +13,6 @@ return new class extends Migration
     {
         Schema::create('riwayat', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('barang_id');
-            $table->string('nama_barang');
-            $table->string('harga');
-            $table->bigInteger('qty');
-            $table->string('total');
             $table->string('total_pembayaran');
             $table->timestamps();
         });

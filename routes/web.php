@@ -39,7 +39,8 @@ Route::get('about', function(){
 Route::get('transaksi', [trasactionController::class, 'index']);
 Route::get('profil', [profilController::class, 'index']);
 Route::post('/profil/upload', [profilController::class, 'store']);
-Route::post('/transaksi/submit', [trasactionController::class, 'submit']);
+Route::post('/transaksi/barang', [trasactionController::class, 'submit']);
+Route::post('/transaksi/submit', [trasactionController::class, 'update']);
 Route::get('/transaksi/delete/{id}', [trasactionController::class, 'destroy']);
 Route::get('/transaksi/delete', [trasactionController::class, 'cetak']);
-Route::post('/transaksi/update', [trasactionController::class, 'update']);
+//Route::post('/transaksi/update', [trasactionController::class, 'update']);

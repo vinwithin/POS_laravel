@@ -37,10 +37,9 @@ class trasactionController extends Controller
     }
     public function update(Request $request){
         riwayat::create([
-            "nama_kasir" => auth()->user()->name,
-            "qty" => $request->qtyjumlah,
-            "total" => $request->totals,
+            "total_pembayaran" => $request->totals
         ]);
+        transaksi::query()->delete();
         return redirect('transaksi')->withSuccess('Berhasil Dipesan!');
     }
     

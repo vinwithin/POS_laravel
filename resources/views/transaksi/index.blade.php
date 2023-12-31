@@ -10,7 +10,7 @@
         <div class="card border-primary mb-3">
             <div class="card-body">
                 <div class="form-group row pb-4">
-                    <form class="row g-3 mt-3" action="/transaksi/submit" method="POST">
+                    <form class="row g-3 mt-3" action="/transaksi/barang" method="POST">
                         @csrf
                         <label for="inputEmail3" class="col-sm-2 col-form-label">Product</label>
                         <div class="col-sm-8">
@@ -47,7 +47,7 @@
                         </thead>
                         <tbody>
                             @foreach ($transaksis as $trans)
-                            <form action="/transaksi/update" method="post">
+                           
                                 @csrf
                                 <tr>
                                     <td>
@@ -90,6 +90,8 @@
                             @endforeach
                         </tbody>
                         <tfoot>
+                        <form action="/transaksi/submit" method="POST">
+                            @csrf
                             <td></td>
                             <td></td>
                             <td></td>
@@ -100,6 +102,7 @@
                                 class="qtyjumlah form-control" value="">
 
                             </td>
+                        
                             <tr>
                                 <td style="border:none;"></td>
                                 <td style="border:none;"></td>
@@ -125,6 +128,7 @@
                     <div style="text-align: right">
                     <button class="btn btn-success btn-sm float-right">Submit</button>
                     </div>
+                </form>
                 </form>
                     <form action="transaksi/delete" method="get">
                         @csrf
